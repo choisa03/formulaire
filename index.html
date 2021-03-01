@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>corina</title>
+  </head>
+  <body>
+    <form name="covid" action="" onsubmit="return verif()">
+      <h3> Information personnelles</h3>
+      <table style="width: 100%">
+        <tbody>
+          <tr>
+            <td>Nom:</td>
+            <td> <input name="A" size="25" required="required" type="text"> </td>
+          </tr>
+          <tr>
+            <td>Prénom: </td>
+            <td><input name="Z" required="required" size="25" type="text"> </td>
+          </tr>
+          <tr>
+            <td>Date de naissance: </td>
+            <td><input name="E" required="required" size="25" type="date"> </td>
+          </tr>
+          <tr>
+            <td>Adresse: </td>
+            <td><input name="R" size="25" type="text"> </td>
+          </tr>
+          <tr>
+            <td>Pays: </td>
+            <td> <input name="T" size="25" type="text"> </td>
+          </tr>
+          <tr>
+            <td>Numéro de téléphone: </td>
+            <td><input name="Y" size="25" type="tel"> </td>
+          </tr>
+          <tr>
+            <td>Email: </td>
+            <td> <input name="U" size="25" type="email"> </td>
+          </tr>
+        </tbody>
+      </table>
+      <p><br>
+      </p>
+    </form>
+    <form name="f" onsubmit="return calcul()">
+      <p> </p>
+      <h3>Maladies chroniques</h3>
+      Avez-vous des maladies chroniques? <br>
+      &nbsp;&nbsp;&nbsp; <input name="I" id="mc" type="checkbox">Maladie
+      cardiaque <br>
+      &nbsp;&nbsp;&nbsp; <input name="O" id="mp" type="checkbox">Maladie
+      pulmonaire <br>
+      &nbsp;&nbsp;&nbsp; <input name="Q" id="tai" type="checkbox">Troubles
+      auto-immunitaire<br>
+      <br>
+      <p> </p>
+      <h3> Les symptômes les plus communs </h3>
+      <b>Fièvre:</b> <br>
+      Est-ce que votre température corporelle a dépassée 38°? <br>
+      <input name="s" id="o1" type="radio">Oui<br>
+      <input name="s" id="n1" type="radio">Non<br>
+      <br>
+      <b>Fatigue:</b> <br>
+      Est-ce que vous vous sentez plus ou moins fatigué récemment? <br>
+      <input name="d" id="o2" type="radio">Oui <br>
+      <input name="d" id="n2" type="radio">Non <br>
+      <br>
+      <b>Toux:</b> <br>
+      Avez-vous de la toux? Quelle sorte? <br>
+      <input name="l" id="ts" type="radio">Toux séche <br>
+      <input name="l" id="tr" type="radio">Toux régulière <br>
+      <input name="l" id="n3" type="radio">Non <br>
+      <br>
+      <p> </p>
+      <h3> Les symptômes sévères </h3>
+      Avez-vous eu des difficultés à respirer ou un essoufflement? <br>
+      <input name="g" id="o4" type="radio">Oui <br>
+      <input name="g" id="n4" type="radio">Non <br>
+      Avez-vous eu des douleurs ou pressions thoraciques? <br>
+      <input name="h" id="o5" type="radio">Oui <br>
+      <input name="h" id="n5" type="radio">Non <br>
+      Avez-vous eu perte de la parole ou du mouvement? <br>
+      <input name="j" id="o6" type="radio">Oui <br>
+      <input name="j" id="n6" type="radio">Non <br>
+      <br>
+      <p> </p>
+      <h3>Les symptômes moins communs</h3>
+      Avez-vous eu une perte de goût ou de l'odorat? <br>
+      <input name="k" id="o7" type="radio">Oui <br>
+      <input name="k" id="n7" type="radio">Non <br>
+      Avez-vous des maux de gorge? <br>
+      <input name="x" id="o8" type="radio">Oui <br>
+      <input name="x" id="n8" type="radio">Non <br>
+      Avez-vous des maux de tête? <br>
+      <input name="m" id="o9" type="radio">Oui <br>
+      <input name="m" id="n9" type="radio">Non<p>
+    <button name="btn" onclick="return verif()">
+      Envoyer
+      </button></p></form>
+    <script language="javascript">
+    function verif()
+      {
+        nom=document.f.A.value;
+        if(nom.length<3) 
+            {
+                alert("Veuillez entrer votre nom!");
+                return false;
+            }
+        prenom=document.Z.prénom.value;
+        if( prenom<3) 
+            {
+                alert("Veuillez entrer votre prénom!");
+                return false; 
+            }
+        email=document.f.U.value;
+         var ch1= email.substring(0,email.lastIndexOf("@"));
+         var ch2= email.substring(email.lastIndexOf("@")+1,email.lastIndexOf("."));
+         var ch3= email.substring(email.lastIndexOf("."));
+         ch1=ch1.toUpperCase()
+         ch2=ch2.toUpperCase()
+         if (ch1.length < 3)
+         {
+            alert("email invalide");
+            return false;
+         }
+         if (ch2.length<3){
+           alert("email invalide");
+           return false;
+         }
+        if ((ch3.length<2) && (ch3.length>4)){
+           alert("email invalide");
+           return false;
+         }
+        adresse=document.f.R.value;
+        if (adresse.length<10)
+        {
+          alert("adresse invalide")
+          return false;
+        }
+        tel=document.f.Y.value;
+        if(tel.length != 8){
+        alert("Numéro invalide");
+        return false;
+        }
+        if(tel.charAt(0)<=1){
+          alert("le premier chiffre doit etre superieur a 1");
+        return false;
+      }
+      	fievre=document.getElementById("o1");
+      	fatigue=document.getElementById("o2");
+        touxs=document.getElementById("ts");
+        touxr=document.getElementById("tr");
+        respire=document.getElementById("o4");
+        douleurs=document.getElementById("o5");
+        pertep=document.getElementById("o6");
+        perteg=document.getElementById("o7");
+        mdg=document.getElementById("o8");
+        mdt=document.getElementById("o9");
+        s=0;
+        if(fievre.checked)
+        {
+          s+=3;
+        }
+        if(fatigue.checked)
+        {
+          s+=2;
+        }
+        if (touxs.checked)
+        {
+          s+=3;
+        }
+        if (touxr.checked)
+        {
+          s+=2;
+        }
+        if (respire.checked)
+        {
+          s+=5;
+        }
+        if (douleurs.checked)
+        {
+          s+=5;
+        }
+        if (pertep.checked)
+        {
+          s+=5;
+        }
+        if (perteg.checked)
+        {
+          s+=2;
+        }  
+        if (mdg.checked)
+        {
+          s+=2;
+        }
+        if (mdt.checked)
+        {
+          s+=1;
+        }
+      
+        
+          dateactuelle=new Date()
+	 				anneeactuelle=dateactuelle.getFullYear()
+	 				datenaissance=new Date(f.d.value)
+	 				anneenaissance=datenaissance.getFullYear()
+					age = Number(anneeactuelle)- Number(anneenaissance)
+          alert("votre age est "+age+"ans")
+        if (((0<=s) && (s<=7)) && ((age<65)))
+        {
+          document.write("Vous devirez aller bien, mais faites attention à vous, et n’oubliez pas de respecter les gestesbarrières.");
+        }
+        else
+        {
+          document.write("Vous devirez aller bien, mais vous devriez rester confiné chez vous.");
+        }
+        if ((8<=s) && (s<=18)) 
+        {
+          document.write("Vous avez des majeurs symptômes du COVID-19. Vous devriez vous confiner au plus vite, et faire un test de dépistage.");
+        }
+        else
+        {
+          document.write("Précipitez-vous au centre COVID le plus proche pour être pris en charge.");
+        }
+        if (s>18)
+        {
+          document.write("Précipitez-vous au centre COVID le plus proche pour être pris en charge.");
+        }
+      }
+    
+    </script>
+  </body>
+</html>
